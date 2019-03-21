@@ -16,7 +16,30 @@ public class MyDeque<E>{
   public int size(){
     return size;
   }
-  public String toString(){ }
+  public String toString(){
+    String answer = "[";
+    if(start > end)
+    {
+      for(int i = start; i < end; i ++)
+      {
+        answer += data[i] + ",";
+      }
+    }
+    else
+    {
+      for(int i = start; i < data.length; i ++)
+      {
+        answer += data[i] + ",";
+      }
+      for(int i = 0; i < e; i ++)
+      {
+        answer += data[i] + ",";
+      }
+    }
+    answer += data[end] + "]";
+  }
+
+
   public void addFirst(E element){ }
   public void addLast(E element){ }
   public E removeFirst(E element){ }
