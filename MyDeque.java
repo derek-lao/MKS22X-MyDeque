@@ -6,8 +6,12 @@ public class MyDeque<E>{
   public MyDeque(){
     data = (E[])new Object[10];
   }
+  
+  public MyDeque(int initialCapacity){
+    data = (E[])new Object[initialCapacity];
+  }
 
-  public MyDeque(int initialCapacity){  }
+
   public int size(){ }
   public String toString(){ }
   public void addFirst(E element){ }
