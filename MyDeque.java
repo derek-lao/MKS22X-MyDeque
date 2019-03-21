@@ -2,7 +2,11 @@ public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
 
-  public MyDeque(){  }
+  @SuppressWarnings("unchecked")
+  public MyDeque(){
+    data = (E[])new Object[10];
+  }
+
   public MyDeque(int initialCapacity){  }
   public int size(){ }
   public String toString(){ }
