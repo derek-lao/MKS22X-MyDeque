@@ -9,6 +9,7 @@ public class MyDeque<E>{
     data = (E[])new Object[10];
     start = 0;
     end = 0;
+    size = 0;
   }
 
   @SuppressWarnings("unchecked")
@@ -16,9 +17,8 @@ public class MyDeque<E>{
     data = (E[])new Object[initialCapacity];
     start = 0;
     end = 0;
+    size = 0;
   }
-
-  boolean isEmpty = (size == 0);
 
   private void resize(){
     if(size == data.length)
@@ -49,6 +49,7 @@ public class MyDeque<E>{
       }
     }
   }
+
   public int size(){
     return size;
   }
@@ -87,6 +88,12 @@ public class MyDeque<E>{
   public void addFirst(E element){
     if(element == null)
     throw new NullPointerException();
+    else if(size == 0)
+    {
+      resize();
+      data[start] = element;
+      size ++;
+    }
     else
     {
       resize();
@@ -105,9 +112,16 @@ public class MyDeque<E>{
       resize();
     }
   }
+
   public void addLast(E element){
     if(element == null)
     throw new NullPointerException();
+    else if(size == 0)
+    {
+      resize();
+      data[end] = element;
+      size ++;
+    }
     else
     {
       resize();
@@ -127,7 +141,7 @@ public class MyDeque<E>{
     }
   }
   public E removeFirst(){
-    if(!isEmpty)
+    if(size > 0)
     {
       int holder = start;
       if(start == data.length - 1)
@@ -150,7 +164,7 @@ public class MyDeque<E>{
 
   }
   public E removeLast(){
-    if(!isEmpty)
+    if(size > 0)
     {
       int holder = end;
       if(end == 0)
