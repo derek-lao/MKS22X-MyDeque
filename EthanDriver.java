@@ -15,6 +15,7 @@ public class EthanDriver {
 	}
 
 	private static String message(String input, Integer desired, Integer output) {
+		System.out.println("You failed?");
 		return message(input, Integer.toString(desired), Integer.toString(output));
 	}
 
@@ -32,7 +33,7 @@ public class EthanDriver {
 	private static String gist_string(MyDeque<Integer> a) {
 		String full;
 		try {full = a.toString();}
-		catch (Exception e) {return "toString threw: "+e;}
+		catch (Exception e) {/* e.printStackTrace(); */ return "toString threw: "+e;}
 
 		if (full.length() < 30) return full;
 		return full.substring(0, 10).trim()+" ... "+full.substring(full.length()-10, full.length()).trim();
@@ -55,49 +56,55 @@ public class EthanDriver {
 		try {
 			deque.getFirst();
 			out.add(message("{}.getFirst()", "NoSuchElementException", Integer.toString(deque.getFirst())));
-		} catch (NoSuchElementException e) {}
+		} catch (NoSuchElementException e) {/* e.printStackTrace(); */}
 		catch (Exception e) {
 			out.add(message("{}.getFirst()", "NoSuchElementException", e.getClass().getSimpleName()));
+			/* e.printStackTrace(); */
 		}
 
 		try {
 			deque.getLast();
 			out.add(message("{}.getLast()", "NoSuchElementException", Integer.toString(deque.getLast())));
-		} catch (NoSuchElementException e) {}
+		} catch (NoSuchElementException e) {/* e.printStackTrace(); */}
 		catch (Exception e) {
 			out.add(message("{}.getLast()", "NoSuchElementException", e.getClass().getSimpleName()));
+			/* e.printStackTrace(); */
 		}
 
 		try {
 			deque.removeFirst();
 			out.add(message("{}.removeFirst()", "NoSuchElementException", Integer.toString(deque.removeFirst())));
-		} catch (NoSuchElementException e) {}
+		} catch (NoSuchElementException e) {/* e.printStackTrace(); */}
 		catch (Exception e) {
 			out.add(message("{}.removeFirst()", "NoSuchElementException", e.getClass().getSimpleName()));
+			/* e.printStackTrace(); */
 		}
 
 		try {
 			deque.removeLast();
 			out.add(message("{}.removeLast()", "NoSuchElementException", Integer.toString(deque.removeLast())));
-		} catch (NoSuchElementException e) {}
+		} catch (NoSuchElementException e) {/* e.printStackTrace(); */}
 		catch (Exception e) {
 			out.add(message("{}.removeLast()", "NoSuchElementException", e.getClass().getSimpleName()));
+			/* e.printStackTrace(); */
 		}
 
 		try {
 			deque.addFirst(null);
 			out.add(message("{}.addFirst(null)", "NullPointerException", "you didn't throw anything"));
-		} catch (NullPointerException e) {}
+		} catch (NullPointerException e) {/* e.printStackTrace(); */}
 		catch (Exception e) {
 			out.add(message("{}.addFirst(null)", "NullPointerException", e.getClass().getSimpleName()));
+			/* e.printStackTrace(); */
 		}
 
 		try {
 			deque.addLast(null);
 			out.add(message("{}.addLast(null)", "NullPointerException", "you didn't throw anything"));
-		} catch (NullPointerException e) {}
+		} catch (NullPointerException e) {/* e.printStackTrace(); */}
 		catch (Exception e) {
 			out.add(message("{}.addLast(null)", "NullPointerException", e.getClass().getSimpleName()));
+			/* e.printStackTrace(); */
 		}
 
 		// adding forward past capacity
@@ -119,6 +126,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".addLast("+i+")", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 		}
@@ -140,6 +148,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".removeLast()", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 		}
@@ -164,6 +173,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".addFirst("+i+")", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 		}
@@ -185,6 +195,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".removeFirst()", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 		}
@@ -209,6 +220,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".addLast("+i+")", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 			old = gist_string(deque);
@@ -225,6 +237,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".removeFirst()", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 		}
@@ -246,6 +259,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".addLast("+i+")", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 		}
@@ -267,6 +281,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".removeLast()", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 		}
@@ -291,6 +306,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".addFirst("+i+")", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 			old = gist_string(deque);
@@ -307,6 +323,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".removeLast()", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 		}
@@ -328,6 +345,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".addFirst("+i+")", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 		}
@@ -349,6 +367,7 @@ public class EthanDriver {
 				}
 			} catch (Exception e) {
 				out.add(message(old+".removeFirst()", gist_string(comp), e.toString()));
+				/* e.printStackTrace(); */
 				break;
 			}
 		}

@@ -178,4 +178,11 @@ public class MyDeque<E>{
     else
     throw new NoSuchElementException();
   }
+
+  public static void main(String[] args){
+    try
+    {
+      MyDeque stuff = new MyDeque<Integer>(15);
+    }
+  }
 }
