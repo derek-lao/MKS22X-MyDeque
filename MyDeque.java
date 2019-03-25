@@ -7,11 +7,15 @@ public class MyDeque<E>{
   @SuppressWarnings("unchecked")
   public MyDeque(){
     data = (E[])new Object[10];
+    start = 0;
+    end = 0;
   }
 
   @SuppressWarnings("unchecked")
   public MyDeque(int initialCapacity){
     data = (E[])new Object[initialCapacity];
+    start = 0;
+    end = 0;
   }
 
   boolean isEmpty = (size == 0);
@@ -40,7 +44,8 @@ public class MyDeque<E>{
       {
         @SuppressWarnings("unchecked")
         E[] thingie = (E[]) new Object[(data.length + 1) * 2];
-        data[0] = data[start];
+        thingie[0] = data[start];
+        data = thingie;
       }
     }
   }
@@ -179,10 +184,10 @@ public class MyDeque<E>{
     throw new NoSuchElementException();
   }
 
-  public static void main(String[] args){
-    try
-    {
-      MyDeque stuff = new MyDeque<Integer>(15);
-    }
-  }
+  // public static void main(String[] args){
+  //   try
+  //   {
+  //     MyDeque stuff = new MyDeque<Integer>(15);
+  //   }
+  // }
 }
