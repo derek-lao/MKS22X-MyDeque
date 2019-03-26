@@ -23,10 +23,10 @@ public class MyDeque<E>{
   private void resize(){
     if(size == data.length)
     {
+      @SuppressWarnings("unchecked")
+      E[] thingie = (E[]) new Object[(data.length + 1) * 2];
       if(start == end + 1)
       {
-        @SuppressWarnings("unchecked")
-        E[] thingie = (E[]) new Object[(data.length + 1) * 2];
         int increment = 0;
         for(int s = start; s < data.length; s ++, increment ++)
         {
@@ -42,10 +42,16 @@ public class MyDeque<E>{
       }
       else if(start == end) // should only happen if initial array had only one element;
       {
-        @SuppressWarnings("unchecked")
-        E[] thingie = (E[]) new Object[(data.length + 1) * 2];
         thingie[0] = data[start];
         data = thingie;
+      }
+      else if(start < end) // happens if you had added your numbers to your array in order from index 0 to index data.length - 1
+      {
+        for(int s = 0; s < end + 1; s ++)
+        {
+          thingie[s] = data[s];
+          data = thingie;
+        }
       }
     }
   }
@@ -55,15 +61,19 @@ public class MyDeque<E>{
   }
   public String toString(){
     String answer = "{";
-    if(start > end)
+    if(start < end)
     {
       for(int i = start; i < end; i ++)
       {
         if(data[i] != null)
         answer += data[i] + ",";
       }
+      if(data[end] != null)
+      {
+        answer += data[end];
+      }
     }
-    else
+    else if(start > end)
     {
       for(int i = start; i < data.length; i ++)
       {
@@ -75,10 +85,15 @@ public class MyDeque<E>{
         if(data[i] != null)
         answer += data[i] + ",";
       }
+      if(data[end] != null)
+      {
+        answer += data[end];
+      }
     }
-    if(data[data.length - 1] != null)
+    else
     {
-      answer += data[end];
+      if(data[start] != null)
+      answer += data[start];
     }
     answer += "}";
     return answer;
@@ -86,6 +101,9 @@ public class MyDeque<E>{
 
 
   public void addFirst(E element){
+    System.out.println("Size is " + size);
+    System.out.println("data.length is " + data.length);
+    System.out.println("Attempted added element is " + element);
     if(element == null)
     throw new NullPointerException();
     else if(size == 0)
@@ -96,7 +114,9 @@ public class MyDeque<E>{
     }
     else
     {
+      System.out.println("My array before first resize is " + this.toString());
       resize();
+      System.out.println("My array after the first resize but before adding first is " + this.toString());
       if(start != 0)
       {
         start --;
@@ -109,11 +129,16 @@ public class MyDeque<E>{
         data[start] = element;
         size ++;
       }
+      System.out.println("My array after the first resize and after adding first is " + this.toString());
       resize();
+      System.out.println("My array after the second resize and after adding first is " + this.toString());
     }
   }
 
   public void addLast(E element){
+    System.out.println("Size is " + size);
+    System.out.println("data.length is " + data.length);
+    System.out.println("Attempted added element is " + element);
     if(element == null)
     throw new NullPointerException();
     else if(size == 0)
@@ -121,10 +146,13 @@ public class MyDeque<E>{
       resize();
       data[end] = element;
       size ++;
+      resize();
     }
     else
     {
+      System.out.println("My array before first resize is " + this.toString());
       resize();
+      System.out.println("My array after the first resize but before adding last is " + this.toString());
       if(end != data.length - 1)
       {
         end ++;
@@ -137,7 +165,9 @@ public class MyDeque<E>{
         data[end] = element;
         size ++;
       }
+      System.out.println("My array after the first resize and after adding last is " + this.toString());
       resize();
+      System.out.println("My array after the second resize and after adding last is " + this.toString());
     }
   }
   public E removeFirst(){
@@ -199,16 +229,18 @@ public class MyDeque<E>{
   }
 
   public static void main(String[] args){
-    System.out.println("testing if else");
-    int i = 1;
-    if(i == 1)
+    try
     {
-      System.out.println("i was 1, now I am making it not 1");
-      i --;
+      MyDeque<Integer> thing = new MyDeque<Integer>(3);
+      for(int i = 0; i < 4; i ++)
+      {
+        thing.addLast(i);
+        System.out.println();
+      }
     }
-    else
+    catch(Exception e)
     {
-      System.out.println("else activated after I incremented i");
+      System.out.println(e.toString());
     }
   }
 }
