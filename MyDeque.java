@@ -198,10 +198,17 @@ public class MyDeque<E>{
     throw new NoSuchElementException();
   }
 
-  // public static void main(String[] args){
-  //   try
-  //   {
-  //     MyDeque stuff = new MyDeque<Integer>(15);
-  //   }
-  // }
+  public static void main(String[] args){
+    System.out.println("testing if else");
+    int i = 1;
+    if(i == 1)
+    {
+      System.out.println("i was 1, now I am making it not 1");
+      i --;
+    }
+    else
+    {
+      System.out.println("else activated after I incremented i");
+    }
+  }
 }
