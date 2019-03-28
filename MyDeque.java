@@ -2,7 +2,7 @@ import java.util.*;
 
 public class MyDeque<E>{
   private E[] data; //remember to make private
-  private int size, start, end; //remember to make private
+  private int size, start, end; //remember to make private!
 
   @SuppressWarnings("unchecked")
   public MyDeque(){
