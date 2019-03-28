@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class MyDeque<E>{
-  private E[] data;
-  private int size, start, end;
+  public E[] data; //remember to make private
+  public int size, start, end; //remember to make private
 
   @SuppressWarnings("unchecked")
   public MyDeque(){
@@ -113,9 +113,8 @@ public class MyDeque<E>{
         answer += data[end];
       }
     }
-    else
+    else if(size != 0 && data[start] != null)
     {
-      if(data[start] != null)
       answer += data[start];
     }
     answer += "}";
@@ -207,6 +206,10 @@ public class MyDeque<E>{
         start ++;
         size --;
       }
+      if(size == 0)
+      {
+        end = start;
+      }
       return data[holder];
     }
     // return null; // if no elements in list
@@ -229,6 +232,10 @@ public class MyDeque<E>{
       {
         end --;
         size --;
+      }
+      if(size == 0)
+      {
+        start = end;
       }
       return data[holder];
     }
@@ -254,16 +261,16 @@ public class MyDeque<E>{
   public static void main(String[] args){
     try
     {
-      MyDeque<Integer> thing = new MyDeque<Integer>(3);
-      for(int i = 0; i < 4; i ++)
+      MyDeque<Integer> thing = new MyDeque<>();
+      for(int i = 0; i < 500; i ++)
       {
-        thing.addFirst(i);
-        System.out.println("My thing is now " + Arrays.toString(thing.data));
-        System.out.println("My start index is now " + thing.start);
-        System.out.println("My end index is now " + thing.end);
-        System.out.println(thing.getFirst());
-        System.out.println(thing.getLast());
-        System.out.println();
+        thing.addLast(i);
+        // System.out.println("My thing is now " + Arrays.toString(thing.data));
+        // System.out.println("My start index is now " + thing.start);
+        // System.out.println("My end index is now " + thing.end);
+        // System.out.println(thing.getFirst());
+        // System.out.println(thing.getLast());
+        // System.out.println();
       }
     }
     catch(Exception e)
