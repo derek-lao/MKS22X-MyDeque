@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class EthanDriver {
+public class EmmaDriver {
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -42,65 +42,65 @@ public class EthanDriver {
 		ArrayList<String> out = new ArrayList<>();
 		MyDeque<Integer> deque = new MyDeque<>();
 
-		// empty array
+		System.out.println("empty array");
 
 		if (!deque.toString().equals("{}"))
-			out.add(message("{}.toString()", "\"{}\"", "\""+deque.toString()+"\""));
+    System.out.println(message("{}.toString()", "\"{}\"", "\""+deque.toString()+"\""));
 
 		if (deque.size() != 0)
-			out.add(message("{}.size()", 0, deque.size()));
+			System.out.println(message("{}.size()", 0, deque.size()));
 
-		// exception testing
+		System.out.println("exception testing");
 
 		try {
 			deque.getFirst();
-			out.add(message("{}.getFirst()", "NoSuchElementException", Integer.toString(deque.getFirst())));
+			System.out.println(message("{}.getFirst()", "NoSuchElementException", Integer.toString(deque.getFirst())));
 		} catch (NoSuchElementException e) {}
 		catch (Exception e) {
-			out.add(message("{}.getFirst()", "NoSuchElementException", e.getClass().getSimpleName()));
+			System.out.println(message("{}.getFirst()", "NoSuchElementException", e.getClass().getSimpleName()));
 		}
 
 		try {
 			deque.getLast();
-			out.add(message("{}.getLast()", "NoSuchElementException", Integer.toString(deque.getLast())));
+			System.out.println(message("{}.getLast()", "NoSuchElementException", Integer.toString(deque.getLast())));
 		} catch (NoSuchElementException e) {}
 		catch (Exception e) {
-			out.add(message("{}.getLast()", "NoSuchElementException", e.getClass().getSimpleName()));
+			System.out.println(message("{}.getLast()", "NoSuchElementException", e.getClass().getSimpleName()));
 		}
 
 		try {
 			deque.removeFirst();
-			out.add(message("{}.removeFirst()", "NoSuchElementException", Integer.toString(deque.removeFirst())));
+			System.out.println(message("{}.removeFirst()", "NoSuchElementException", Integer.toString(deque.removeFirst())));
 		} catch (NoSuchElementException e) {}
 		catch (Exception e) {
-			out.add(message("{}.removeFirst()", "NoSuchElementException", e.getClass().getSimpleName()));
+			System.out.println(message("{}.removeFirst()", "NoSuchElementException", e.getClass().getSimpleName()));
 		}
 
 		try {
 			deque.removeLast();
-			out.add(message("{}.removeLast()", "NoSuchElementException", Integer.toString(deque.removeLast())));
+			System.out.println(message("{}.removeLast()", "NoSuchElementException", Integer.toString(deque.removeLast())));
 		} catch (NoSuchElementException e) {}
 		catch (Exception e) {
-			out.add(message("{}.removeLast()", "NoSuchElementException", e.getClass().getSimpleName()));
+			System.out.println(message("{}.removeLast()", "NoSuchElementException", e.getClass().getSimpleName()));
 		}
 
 		try {
 			deque.addFirst(null);
-			out.add(message("{}.addFirst(null)", "NullPointerException", "you didn't throw anything"));
+			System.out.println(message("{}.addFirst(null)", "NullPointerException", "you didn't throw anything"));
 		} catch (NullPointerException e) {}
 		catch (Exception e) {
-			out.add(message("{}.addFirst(null)", "NullPointerException", e.getClass().getSimpleName()));
+			System.out.println(message("{}.addFirst(null)", "NullPointerException", e.getClass().getSimpleName()));
 		}
 
 		try {
 			deque.addLast(null);
-			out.add(message("{}.addLast(null)", "NullPointerException", "you didn't throw anything"));
+			System.out.println(message("{}.addLast(null)", "NullPointerException", "you didn't throw anything"));
 		} catch (NullPointerException e) {}
 		catch (Exception e) {
-			out.add(message("{}.addLast(null)", "NullPointerException", e.getClass().getSimpleName()));
+			System.out.println(message("{}.addLast(null)", "NullPointerException", e.getClass().getSimpleName()));
 		}
 
-		// adding forward past capacity
+		System.out.println("adding forward past capacity");
 
 		Deque<Integer> comp = new ArrayDeque<>();
 
@@ -110,20 +110,20 @@ public class EthanDriver {
 				deque.addLast(i);
 				comp.addLast(i);
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".addLast("+i+")", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".addLast("+i+")", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".addLast("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".addLast("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".addLast("+i+")", gist_string(comp), e.toString()));
+				System.out.println(message(old+".addLast("+i+")", gist_string(comp), e.toString()));
 				break;
 			}
 		}
 
-		// removing from end without wrap
+		System.out.println("removing from end without wrap");
 
 		for (int i = 0; i < 1000; i++) {
 			String old = gist_string(deque);
@@ -131,20 +131,20 @@ public class EthanDriver {
 				deque.removeLast();
 				comp.removeLast();
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".removeLast()", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".removeLast()", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".removeLast()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".removeLast()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".removeLast()", gist_string(comp), e.toString()));
+				System.out.println(message(old+".removeLast()", gist_string(comp), e.toString()));
 				break;
 			}
 		}
 
-		// adding backward past capacity
+		System.out.println("adding backward past capacity");
 
 		deque = new MyDeque<>();
 		comp = new ArrayDeque<>();
@@ -155,20 +155,20 @@ public class EthanDriver {
 				deque.addFirst(i);
 				comp.addFirst(i);
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".addFirst("+i+")", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".addFirst("+i+")", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".addFirst("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".addFirst("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".addFirst("+i+")", gist_string(comp), e.toString()));
+				System.out.println(message(old+".addFirst("+i+")", gist_string(comp), e.toString()));
 				break;
 			}
 		}
 
-		// removing from front without wrap
+		System.out.println("removing from front without wrap");
 
 		for (int i = 0; i < 1000; i++) {
 			String old = gist_string(deque);
@@ -176,20 +176,20 @@ public class EthanDriver {
 				deque.removeFirst();
 				comp.removeFirst();
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".removeFirst()", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".removeFirst()", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".removeFirst()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".removeFirst()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".removeFirst()", gist_string(comp), e.toString()));
+				System.out.println(message(old+".removeFirst()", gist_string(comp), e.toString()));
 				break;
 			}
 		}
 
-		// stepping forwards -- this should place us somewhere in the middle of the data array
+		System.out.println("stepping forwards -- this should place us somewhere in the middle of the data array");
 
 		deque = new MyDeque<>();
 		comp = new ArrayDeque<>();
@@ -200,15 +200,15 @@ public class EthanDriver {
 				deque.addLast(i);
 				comp.addLast(i);
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".addLast("+i+")", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".addLast("+i+")", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".addLast("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".addLast("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".addLast("+i+")", gist_string(comp), e.toString()));
+				System.out.println(message(old+".addLast("+i+")", gist_string(comp), e.toString()));
 				break;
 			}
 			old = gist_string(deque);
@@ -216,20 +216,20 @@ public class EthanDriver {
 				deque.removeFirst();
 				comp.removeFirst();
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".removeFirst()", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".removeFirst()", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".removeFirst()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".removeFirst()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".removeFirst()", gist_string(comp), e.toString()));
+				System.out.println(message(old+".removeFirst()", gist_string(comp), e.toString()));
 				break;
 			}
 		}
 
-		// adding forward to meet at middle
+		System.out.println("adding forward to meet at middle");
 
 		for (int i = 0; i < 1000; i++) {
 			String old = gist_string(deque);
@@ -237,20 +237,20 @@ public class EthanDriver {
 				deque.addLast(i);
 				comp.addLast(i);
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".addLast("+i+")", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".addLast("+i+")", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".addLast("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".addLast("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".addLast("+i+")", gist_string(comp), e.toString()));
+				System.out.println(message(old+".addLast("+i+")", gist_string(comp), e.toString()));
 				break;
 			}
 		}
 
-		// removing from end with wrap
+		System.out.println("removing from end with wrap");
 
 		for (int i = 0; i < 1000; i++) {
 			String old = gist_string(deque);
@@ -258,20 +258,20 @@ public class EthanDriver {
 				deque.removeLast();
 				comp.removeLast();
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".removeLast()", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".removeLast()", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".removeLast()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".removeLast()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".removeLast()", gist_string(comp), e.toString()));
+				System.out.println(message(old+".removeLast()", gist_string(comp), e.toString()));
 				break;
 			}
 		}
 
-		// stepping backwards -- this should place us somewhere in the middle of the data array
+		System.out.println("stepping backwards -- this should place us somewhere in the middle of the data array");
 
 		deque = new MyDeque<>();
 		comp = new ArrayDeque<>();
@@ -282,15 +282,15 @@ public class EthanDriver {
 				deque.addFirst(i);
 				comp.addFirst(i);
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".addFirst("+i+")", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".addFirst("+i+")", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".addFirst("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".addFirst("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".addFirst("+i+")", gist_string(comp), e.toString()));
+				System.out.println(message(old+".addFirst("+i+")", gist_string(comp), e.toString()));
 				break;
 			}
 			old = gist_string(deque);
@@ -298,20 +298,20 @@ public class EthanDriver {
 				deque.removeLast();
 				comp.removeLast();
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".removeLast()", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".removeLast()", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".removeLast()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".removeLast()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".removeLast()", gist_string(comp), e.toString()));
+				System.out.println(message(old+".removeLast()", gist_string(comp), e.toString()));
 				break;
 			}
 		}
 
-		// adding backward to meet at middle
+		System.out.println("adding backward to meet at middle");
 
 		for (int i = 0; i < 1000; i++) {
 			String old = gist_string(deque);
@@ -319,20 +319,20 @@ public class EthanDriver {
 				deque.addFirst(i);
 				comp.addFirst(i);
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".addFirst("+i+")", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".addFirst("+i+")", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".addFirst("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".addFirst("+i+")\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".addFirst("+i+")", gist_string(comp), e.toString()));
+				System.out.println(message(old+".addFirst("+i+")", gist_string(comp), e.toString()));
 				break;
 			}
 		}
 
-		// removing from front with wrap
+		System.out.println("removing from front with wrap");
 
 		for (int i = 0; i < 1000; i++) {
 			String old = gist_string(deque);
@@ -340,26 +340,17 @@ public class EthanDriver {
 				deque.removeFirst();
 				comp.removeFirst();
 				if (!edge_check(comp, deque)) {
-					out.add(message(old+".removeFirst()", gist_string(comp), gist_string(deque)));
+					System.out.println(message(old+".removeFirst()", gist_string(comp), gist_string(deque)));
 					break;
 				}
 				if (comp.size() != deque.size()) {
-					out.add(message(old+".removeFirst()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
+					System.out.println(message(old+".removeFirst()\n"+gist_string(deque)+".size()", comp.size(), deque.size()));
 					break;
 				}
 			} catch (Exception e) {
-				out.add(message(old+".removeFirst()", gist_string(comp), e.toString()));
+				System.out.println(message(old+".removeFirst()", gist_string(comp), e.toString()));
 				break;
 			}
-		}
-
-		// summary
-
-		if (out.size() == 0) {
-			System.out.println("You passed every test.");
-		} else {
-			System.out.printf("You had %d error(s). Summary:\n", out.size());
-			for (String s : out) System.out.println(s);
 		}
 	}
 }
