@@ -21,12 +21,16 @@ public class MyDeque<E>{
   }
 
   private void resize(){
+    System.out.println("Resize call began! Your start is " + start + " and your end is " + end);
+    System.out.println("Before we proceed, your data array is: " + Arrays.toString(data));
     if(size == data.length)
     {
+      System.out.println("The requirement for resize has been met!");
       @SuppressWarnings("unchecked")
       E[] thingie = (E[]) new Object[(data.length + 1) * 2];
       if(start == end + 1)
       {
+        System.out.println("If you got here, it means that your start index was after end");
         int increment = 0;
         for(int s = start; s < data.length; s ++, increment ++)
         {
@@ -42,18 +46,37 @@ public class MyDeque<E>{
       }
       else if(start == end) // should only happen if initial array had only one element;
       {
+        System.out.println("If you got here, it means that your start index equal to the end");
         thingie[0] = data[start];
         data = thingie;
+        start = 0;
+        end = 0;
       }
       else if(start < end) // happens if you had added your numbers to your array in order from index 0 to index data.length - 1
       {
-        for(int s = 0; s < end + 1; s ++)
+        System.out.println("If you got here, it means that your start index before the end");
+        System.out.println("Before we proceed, here is your data array:    " + Arrays.toString(data));
+        System.out.println("Before we proceed, here is your thingie array: " + Arrays.toString(thingie));
+        System.out.println("We must print all our data values: ");
+        System.out.println("data[0] is " + data[0]);
+        System.out.println("data[1] is " + data[1]);
+        System.out.println("data[2] is " + data[2]);
+        for(int s = 0; s < data.length; s ++)
         {
           thingie[s] = data[s];
-          data = thingie;
+          System.out.println("We must print all our data values within our loop: ");
+          System.out.println("data[0] is " + data[0]);
+          System.out.println("data[1] is " + data[1]);
+          System.out.println("data[2] is " + data[2]);
+          System.out.println("s is " + s + " and data[s] is " + data[s]);
+          System.out.println("Things are failing, printing data array:   " + Arrays.toString(data));
+          System.out.println("Things are failing, printing thingie array: " + Arrays.toString(thingie));
         }
+        data = thingie;
       }
     }
+    System.out.println("Resize call ended! Your start is " + start + " and your end is " + end);
+    System.out.println("Your start value is " + data[start] + " and your end value is " + data[end]);
   }
 
   public int size(){
